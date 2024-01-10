@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vue Basics</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Jost:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js" defer></script>
+    <script src="app.js" defer></script>
+  </head>
+  <body>
+    <header>
+      <h1>Vue Course Goals</h1>
+    </header>
+    <section id="user-goals">
+      <h2>My course goals</h2>
+      <input type="text" v-model="enteredGoalValue" />
+      <button @click="addGoal">Add Goal</button>
+      <!--Se puede usar "v-show" en vez de "v-if/v-else" pero oculta con css, este remueve los elementos del dom. Se pone "v-show en cada elemento que se quiere show/hide" -->
+      
+      <div>Click on each item to remove it.</div>
+      <p v-if="goals.length === 0">
+        No goals have been added yet - please start adding some!
+      </p>
+      <!-- Para que el "v-if/v-else" funcione tienen q estar en elementos vecinos. Si hay otro tag en el medio, no funciona -->
+      <ul v-else>
+        <!--"(goal, index)" se crean 2 const que se pueden utilizar dentro del tag.
+
+          Para corregir el bug de Vue, donde mueve el content del li al index anterior despues de eliminar un li se identifica cada li con un key.
+          (despues de remover, vue vuelve a  generar la lista con los elemntos que quedaron, en lugar de hacer la lista con los viejos elementos, genera una nueva lista y los datos en el input se pierden). Para volver a cargar la lista con los viejos datos:
+         ************ SIEMPRE PONER :KEY AL USAR V-FOR !!!!!***********
+          
+          :Key tiene q ser unico, como no tengo id de db todavia, uso el string del goal. 
+         -->
+
+        <li v-for="(goal, index) in goals" :key="goal"
+          @click="removeGoal(index)"
+        >
+          <p>{{ goal }} - {{ index }}</p>
+          <!-- .stop detiene el evento click removeGoal cuando se clickea en el elemento con @click.stop-->
+          <input type="text" @click.stop />
+        </li>
+      </ul>
+      <!-- vue hace loops con numeros y objetos -->
+
+      <!-- <ul>
+        <li v-for="num in 10">{{ num }}</li>
+      </ul> -->
+      <!-- <ul> 
+        <li v-for="(value, key, index) in {name: 'Max', age: 31}">{{ key }}: {{ value }} - {{ index }}</li> //Imprime  "name: Max - 0, age: 31 - 1"
+      </ul> -->
+    </section>
+  </body>
+</html>

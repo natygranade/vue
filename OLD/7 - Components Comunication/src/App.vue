@@ -18,7 +18,7 @@ export default {
           title: 'The Basics',
           description: 'Core Vue basics you have to know',
           fullText:
-            'Vue is a great framework and it has a couple of key concepts: Data binding, events, components and reactivity - that should tell you something!',
+            'Vue is a  framework and it has a couple of key concepts: Data binding, events, components and reactivity - that should tell you something!',
         },
         {
           id: 'components',

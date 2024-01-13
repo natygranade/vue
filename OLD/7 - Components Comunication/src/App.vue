@@ -18,7 +18,7 @@ export default {
           title: 'The Basics',
           description: 'Core Vue basics you have to know',
           fullText:
-            'Vue is a  framework and it has a couple of key concepts: Data binding, events, components and reactivity - that should tell you something!',
+            'Vue is a framework and it has a couple of key concepts: Data binding, events, components and reactivity - that should tell you something!',
         },
         {
           id: 'components',
@@ -32,10 +32,11 @@ export default {
       activeTopic: null,
     };
   },
-  // provide, al igual que data, devuelve un objeto, el cual puede ser usado en cualquier child element con la propiedad "inject"
+  // provide, al igual que data, devuelve un objeto, el cual puede ser usado en cualquier child element con la propiedad "inject".
   provide() {
     return { 
       topics: this.topics,
+      // selectTopic es una funcion q apunta al metodo activateTopic, y le da el parametro id 
       selectTopic: this.activateTopic
     };
   },

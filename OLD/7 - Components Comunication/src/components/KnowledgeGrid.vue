@@ -12,6 +12,7 @@
 
 <script>
 export default {
+  // traigo el objeto de provide con inject, en lugar de props
   inject: ['topics'],
 };
 </script>

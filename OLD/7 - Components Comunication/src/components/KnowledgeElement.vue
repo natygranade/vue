@@ -8,8 +8,9 @@
 
 <script>
 export default {
+  // inject envia tmb funciones, q las recive el provide.
   inject: ['selectTopic'],
   props: ['id', 'topicName', 'description'],
-  emits: ['select-topic'],
+  // emits: ['select-topic'],
 };
 </script>

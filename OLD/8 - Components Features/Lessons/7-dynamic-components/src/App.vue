@@ -10,21 +10,15 @@
       <component :is="selectedComponent"></component>
     </keep-alive>
   </div>
-
-  <div>
-    <!-- uso la app de la carpeta lessons/1-starting-setup como componente -->
-    <app-1></app-1>
-  </div>
 </template>
 
 <script>
-import TheHeader from './components/layout/TheHeader.vue';
+import TheHeader from './components/TheHeader.vue';
 // import BadgeList from './components/BadgeList.vue';
 // import UserInfo from './components/UserInfo.vue';
 // import CourseGoals from './components/CourseGoals.vue';
 import ActiveGoals from './components/ActiveGoals.vue';
 import ManageGoals from './components/ManageGoals.vue';
-
 
 export default {
   components: {

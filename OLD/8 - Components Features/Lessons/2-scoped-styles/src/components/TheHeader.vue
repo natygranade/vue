@@ -1,6 +1,6 @@
 <template>
   <header>
-    <h1>More on Vue Components</h1>
+    <h1>Scoped Styles</h1>
   </header>
 </template>
 

@@ -15,6 +15,11 @@
     <!-- uso la app de la carpeta lessons/1-starting-setup como componente -->
     <app-1></app-1>
   </div>
+
+  <div>
+    <!-- uso la app de la carpeta lessons/1-starting-setup como componente -->
+    <app-2></app-2>
+  </div>
 </template>
 
 <script>

@@ -12,6 +12,16 @@
   </section>
 </template>
 
+<script>
+import BaseBadge from './BaseBadge.vue'
+
+export default {
+components(){
+  BaseBadge
+}
+}
+</script>
+
 <style scoped>
 section {
   margin: 2rem auto;

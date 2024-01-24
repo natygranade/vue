@@ -16,6 +16,10 @@
 </template>
 
 <style scoped>
+section{
+  padding: 60px;
+}
+
 section h2 {
   margin: 0.5rem 0;
   color: #3a3a3a;

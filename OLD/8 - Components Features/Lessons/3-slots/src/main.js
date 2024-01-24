@@ -1,6 +1,6 @@
 import { createApp } from 'vue';
 
-import App from './App.vue';
+import App from './App-3.vue';
 import BaseBadge from './components/BaseBadge.vue';
 import BaseCard from './components/BaseCard.vue';
 

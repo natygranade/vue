@@ -1,7 +1,7 @@
 <template>
-  <div>
-    <the-header></the-header>
-    <!-- <TheHeader /> -->
+  <the-header></the-header>
+  <!-- <TheHeader /> -->
+  <div id="final">
     <button @click="setSelectedComponent('active-goals')">Active Goals</button>
     <button @click="setSelectedComponent('manage-goals')">Manage Goals</button>
     <!-- <active-goals v-if="selectedComponent === 'active-goals'"></active-goals>
@@ -19,6 +19,10 @@
   <div>
     <!-- uso la app de la carpeta lessons/1-starting-setup como componente -->
     <app-2></app-2>
+  </div>
+
+  <div>
+    <app-3></app-3>
   </div>
 </template>
 
@@ -62,5 +66,8 @@ html {
 
 body {
   margin: 0;
+}
+#final{
+  padding: 50px;
 }
 </style>

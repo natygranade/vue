@@ -1,10 +1,13 @@
 <template>
   <div>
     <header v-if="$slots.header">
+<!-- si uso > 1 slot, tengo q agregar el atr "name", con cualquier nombre q identifique q el wrapper de ese contenido html será esta tag <header>-->
       <slot name="header">
-        <!-- <h2>The Default</h2> -->
+<!-- si no hay contenido, donde se use este slot, se imprimirá este h2 -->
+         <h2>The Default</h2>
       </slot>
     </header>
+<!-- solo se puede dejar un slot sin nombre, y será el default -->
     <slot></slot>
   </div>
 </template>

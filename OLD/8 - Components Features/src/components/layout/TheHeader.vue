@@ -1,6 +1,6 @@
 <template>
   <header>
-    <h1>Component Features</h1>
+    <h1>Dynamic Components</h1>
   </header>
 </template>
 

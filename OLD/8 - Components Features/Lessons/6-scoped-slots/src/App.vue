@@ -8,10 +8,12 @@
       :info-text="activeUser.description"
       :role="activeUser.role"
     ></user-info>
+    <!-- "slotProps" es un objeto con todas las props  q envie del otro cmp -->
     <course-goals #default="slotProps">
       <h2>{{ slotProps.item }}</h2>
-      <p>{{ slotProps['another-prop'] }}</p>
-    </course-goals>
+      <!-- las prop another-prop (kebab case) se pasa a anotherProp (camel case) -->
+      <p>{{ slotProps.anotherProp }}</p>
+    </course-goals> 
   </div>
 </template>
 
@@ -26,7 +28,7 @@ export default {
     TheHeader,
     BadgeList,
     UserInfo,
-    CourseGoals,
+    CourseGoals
   },
   data() {
     return {
@@ -36,7 +38,7 @@ export default {
         role: 'admin',
       },
     };
-  },
+  }
 };
 </script>
 

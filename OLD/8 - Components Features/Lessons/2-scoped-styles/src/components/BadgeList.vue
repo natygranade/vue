@@ -13,7 +13,7 @@
 </template>
 
 <script>
-import BaseBadge from './BaseBadge.vue'
+import BaseBadge from './BaseBadge1.vue'
 
 export default {
 components(){

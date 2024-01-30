@@ -1,9 +1,7 @@
 <template>
   <base-card>
     <base-button
-      @click="setSelectedTab('stored-resources')"
-      :mode="storedResButtonMode"
-    >Stored Resources</base-button>
+      @click="setSelectedTab('stored-resources')" :mode="storedResButtonMode">Stored Resources</base-button>
     <base-button @click="setSelectedTab('add-resource')" :mode="addResButtonMode">Add Resource</base-button>
   </base-card>
   <keep-alive>

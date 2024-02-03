@@ -1,8 +1,12 @@
 <template>
   <base-card>
-    <base-button
-      @click="setSelectedTab('stored-resources')" :mode="storedResButtonMode">Stored Resources</base-button>
-    <base-button @click="setSelectedTab('add-resource')" :mode="addResButtonMode">Add Resource</base-button>
+  <div ref="eventlist">
+    <!-- <base-button @click="setSelectedTab('stored-resources',$event)" :mode="storedResButtonMode">Stored Resources</base-button>
+    <base-button @click="setSelectedTab('add-resource',$event)" :mode="addResButtonMode">Add Resource</base-button>  -->
+
+    <base-button @click="setSelectedTab('stored-resources',$event)" class="flat">Stored Resources</base-button>
+    <base-button @click="setSelectedTab('add-resource',$event)" >Add Resource</base-button>
+  </div>
   </base-card>
   <keep-alive>
     <component :is="selectedTab"></component>
@@ -20,6 +24,7 @@ export default {
   },
   data() {
     return {
+      btnList: [],
       selectedTab: 'stored-resources',
       storedResources: [
         {
@@ -44,17 +49,26 @@ export default {
       deleteResource: this.removeResource
     };
   },
-  computed: {
-    storedResButtonMode() {
-      return this.selectedTab === 'stored-resources' ? null : 'flat';
-    },
-    addResButtonMode() {
-      return this.selectedTab === 'add-resource' ? null : 'flat';
-    },
-  },
+  mounted() {
+  this.btnList = this.$refs.eventlist.children
+},
+// computed:{
+//   storedResButtonMode(){
+//    return this.selectedTab === "stored-resources" ? null : "flat"
+//   },
+//   addResButtonMode(){
+//    return this.selectedTab === "add-resource" ? null : "flat"
+//   }
+
+// },
   methods: {
-    setSelectedTab(tab) {
+    setSelectedTab(tab, event) {
       this.selectedTab = tab;
+      // para tener muchos botones distintos y cambiar el style del btn clickeado
+      Array.from(this.btnList).forEach( btn =>{
+        btn.classList.remove("flat")
+      })
+      event.target.classList.add( "flat")
     },
     addResource(title, description, url) {
       const newResource = {

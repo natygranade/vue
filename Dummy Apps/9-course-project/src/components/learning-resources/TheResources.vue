@@ -4,10 +4,11 @@
     <!-- <base-button @click="setSelectedTab('stored-resources',$event)" :mode="storedResButtonMode">Stored Resources</base-button>
     <base-button @click="setSelectedTab('add-resource',$event)" :mode="addResButtonMode">Add Resource</base-button>  -->
 
-    <base-button @click="setSelectedTab('stored-resources',$event)" class="flat">Stored Resources</base-button>
-    <base-button @click="setSelectedTab('add-resource',$event)" >Add Resource</base-button>
+    <base-button @click="setSelectedTab('stored-resources',$event)">Stored Resources</base-button>
+    <base-button @click="setSelectedTab('add-resource',$event)"  class="flat">Add Resource</base-button>
   </div>
   </base-card>
+  <!-- keep alive para que al pasar de un cmp a otro, los values del input no se borren -->
   <keep-alive>
     <component :is="selectedTab"></component>
   </keep-alive>
@@ -44,7 +45,8 @@ export default {
   },
   provide() {
     return {
-      resources: this.storedResources,
+      resources: this.filteredResources,
+      // resources: this.storedResources,
       addResource: this.addResource,
       deleteResource: this.removeResource
     };
@@ -66,9 +68,9 @@ export default {
       this.selectedTab = tab;
       // para tener muchos botones distintos y cambiar el style del btn clickeado
       Array.from(this.btnList).forEach( btn =>{
-        btn.classList.remove("flat")
+        btn.classList.add("flat")
       })
-      event.target.classList.add( "flat")
+      event.target.classList.remove( "flat")
     },
     addResource(title, description, url) {
       const newResource = {
@@ -81,8 +83,12 @@ export default {
       this.selectedTab = 'stored-resources';
     },
     removeResource(resId) {
-      const resIndex = this.storedResources.findIndex(res => res.id === resId);
-      this.storedResources.splice(resIndex, 1);
+      // const resIndex = this.storedResources.findIndex(res => res.id === resId);
+      // this.storedResources.splice(resIndex, 1);
+      this.filteredResources = this.storedResources.filter( res => {
+          return res.id !== resId
+        })
+        console.log(this.storedResources);
     },
   },
 };

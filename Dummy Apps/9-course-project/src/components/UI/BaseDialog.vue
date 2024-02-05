@@ -1,5 +1,6 @@
 <template>
   <teleport to="body">
+    <!-- emito un custom event para q el popup se cierre al clickear por fuera del popup -->
     <div @click="$emit('close')"></div>
     <dialog open>
       <header>
@@ -12,6 +13,7 @@
       </section>
       <menu>
         <slot name="actions">
+          <!-- pongo un default btn para cerrar en caso de q no ponga ninguna accion en el popup -->
           <base-button @click="$emit('close')">Close</base-button>
         </slot>
       </menu>

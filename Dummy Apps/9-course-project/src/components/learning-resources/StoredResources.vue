@@ -7,7 +7,7 @@
       :title="res.title"
       :description="res.description"
       :link="res.link"
-    ></learning-resource>
+    ></learning-resource> 
   </ul>
 </template>
 

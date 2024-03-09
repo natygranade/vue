@@ -1,29 +1,26 @@
 <template>
   <base-card>
-    <div ref="eventlist">
-      <!-- <base-button @click="setSelectedTab('stored-resources',$event)" :mode="storedResButtonMode">Stored Resources</base-button>
-    <base-button @click="setSelectedTab('add-resource',$event)" :mode="addResButtonMode">Add Resource</base-button>  -->
+  <div ref="eventlist">
+    <base-button @click="setSelectedTab('stored-resources',$event)" :mode="storedResButtonMode">Stored Resources</base-button>
+    <base-button @click="setSelectedTab('add-resource',$event)" :mode="addResButtonMode">Add Resource</base-button> 
 
-      <base-button @click="setSelectedTab('stored-resources', $event)">Stored Resources</base-button>
-      <base-button @click="setSelectedTab('add-resource', $event)" class="flat">Add Resource</base-button>
-    </div>
+  </div>
   </base-card>
   <!-- keep alive para que al pasar de un cmp a otro, los values del input no se borren -->
   <keep-alive>
     <component :is="selectedTab" :resourceToUpdate=" 'selectedTab === update-reource' ? resourceToUpdate : null"></component>
   </keep-alive>
+  <button @click="log">log</button>
 </template>
 
 <script>
 import StoredResources from './StoredResources.vue';
 import AddResource from './AddResource.vue';
-import UpdateResource from './UpdateResource .vue';
 
 export default {
   components: {
     StoredResources,
-    AddResource,
-    UpdateResource
+    AddResource
   },
   data() {
     return {
@@ -49,32 +46,28 @@ export default {
   provide() {
     return {
       resources: this.storedResources,
+      // envio un method para ser usado en otro cmp 
       addResource: this.addResource,
       deleteResource: this.removeResource,
-      updateResource: this.updateResource,
-      selectedTab: this.setSelectedTab
+      setSelectedTab: this.setSelectedTab
     };
   },
   mounted() {
-    this.btnList = this.$refs.eventlist.children
-  },
-  // computed:{
-  //   storedResButtonMode(){
-  //    return this.selectedTab === "stored-resources" ? null : "flat"
-  //   },
-  //   addResButtonMode(){
-  //    return this.selectedTab === "add-resource" ? null : "flat"
-  //   }
 
-  // },
+},
+computed:{
+  storedResButtonMode(){
+   return this.selectedTab === "stored-resources" ? null : "flat"
+  },
+  addResButtonMode(){
+   return this.selectedTab === "add-resource" ? null : "flat"
+  }
+
+},
   methods: {
-    setSelectedTab(tab, event) {
+    setSelectedTab(tab) {
       this.selectedTab = tab;
-      // para tener muchos botones distintos y cambiar el style del btn clickeado
-      Array.from(this.btnList).forEach(btn => {
-        btn.classList.add("flat")
-      })
-      event.target.classList.remove("flat")
+    
     },
     addResource(title, description, url) {
       const newResource = {
@@ -85,24 +78,19 @@ export default {
       };
       this.storedResources.unshift(newResource);
       this.selectedTab = 'stored-resources';
+      Array.from(this.btnList).forEach( btn =>{
+       console.log(btn);
+      })
+
     },
     removeResource(resId) {
       const resIndex = this.storedResources.findIndex(res => res.id === resId);
       this.storedResources.splice(resIndex, 1);
     },
-    updateResource(resId, title, description, url) {
-      this.resourceToUpdate = { resId, title, description, url }
-      const resIndex = this.storedResources.findIndex(res => res.id === resId);
-      console.log(resIndex);
-      const modifiedResource = {
-        id: resId,
-        title: title,
-        description: description,
-        link: url,
-      };
-      this.storedResources.splice(resIndex, 1, modifiedResource);
-      this.selectedTab = 'stored-resources';
+    log(){
+
+      console.log(this.selectedTab);
     }
-  }
+  },
 };
 </script>

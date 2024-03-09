@@ -17,8 +17,8 @@
 <script>
 export default {
   props: ['id', 'title', 'description', 'link'],
-  inject: ['deleteResource', 'updateResource', 'selectedTab']
-
+  inject: ['deleteResource', 'setSelectedTab']
+ 
 };
 </script>
 
